@@ -19,7 +19,7 @@ import org.springframework.security.web.context.SecurityContextRepository;
 import ru.mkenopsia.apisso.dto.RegisterRequest;
 import ru.mkenopsia.apisso.dto.RegisterResponse;
 import ru.mkenopsia.apisso.service.AuthService;
-import ru.mkenopsia.exception.UserCredentialsValidationException;
+import ru.mkenopsia.apisso.exception.UserCredentialsValidationException;
 
 import java.io.IOException;
 import java.util.Map;

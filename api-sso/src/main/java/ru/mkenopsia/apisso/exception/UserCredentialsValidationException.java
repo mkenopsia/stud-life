@@ -1,4 +1,4 @@
-package ru.mkenopsia.exception;
+package ru.mkenopsia.apisso.exception;
 
 import org.springframework.security.core.AuthenticationException;
 

@@ -3,7 +3,7 @@ package ru.mkenopsia.apisso.config.authFilter;
 import jakarta.validation.Validator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import ru.mkenopsia.exception.UserCredentialsValidationException;
+import ru.mkenopsia.apisso.exception.UserCredentialsValidationException;
 
 @Component
 @RequiredArgsConstructor
