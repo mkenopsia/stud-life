@@ -23,6 +23,7 @@ import ru.mkenopsia.apisso.config.authFilter.PayloadValidator;
 import ru.mkenopsia.apisso.config.authFilter.RestLoginFilter;
 import ru.mkenopsia.apisso.config.authFilter.RestRegistrationFilter;
 import ru.mkenopsia.apisso.service.AuthService;
+import ru.mkenopsia.apisso.service.UserService;
 
 import java.util.Arrays;
 import java.util.List;
@@ -62,7 +63,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    public DaoAuthenticationProvider daoAuthenticationProvider(AuthService userDetailService) {
+    public DaoAuthenticationProvider daoAuthenticationProvider(UserService userDetailService) {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider(userDetailService);
         provider.setHideUserNotFoundExceptions(false);
         provider.setPasswordEncoder(passwordEncoder());

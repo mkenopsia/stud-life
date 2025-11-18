@@ -6,6 +6,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -51,13 +52,20 @@ public class RestRegistrationFilter extends AbstractAuthenticationProcessingFilt
             RegisterRequest userPayload = mapper.readValue(request.getInputStream(), RegisterRequest.class);
             validator.validate(userPayload);
 
-            authService.registerUser(userPayload.username(), userPayload.email(), userPayload.password());
+            authService.registerUser(userPayload);
             log.info("Зарегестрирован пользователь {}, с email: {}", userPayload.username(), userPayload.email());
 
             return getAuthenticationManager().authenticate(
                     new UsernamePasswordAuthenticationToken(userPayload.username(), userPayload.password()));
         } catch (IOException e) {
             throw new IllegalArgumentException("Invalid JSON format", e);
+        } catch (DataIntegrityViolationException e) {
+            response.setStatus(HttpStatus.BAD_REQUEST.value());
+            response.setContentType("application/json");
+//            response.getWriter().write(
+//
+//            )
+            throw  e; // todo
         }
     }
 
