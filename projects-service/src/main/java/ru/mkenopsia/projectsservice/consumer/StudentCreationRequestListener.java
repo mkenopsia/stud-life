@@ -17,6 +17,6 @@ public class StudentCreationRequestListener {
     @KafkaListener(topics = "${kafka.student-creation-topic}")
     public void listen(StudentInfoDto studentInfoDto) {
         log.info("Получено сообщение из kafka: {}", studentInfoDto);
-//        studentService.save(studentInfoDto);
+        studentService.save(studentInfoDto);
     }
 }

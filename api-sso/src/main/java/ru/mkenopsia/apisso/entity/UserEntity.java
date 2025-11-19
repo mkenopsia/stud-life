@@ -13,7 +13,6 @@ import lombok.*;
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "c_id")
     private Integer id;
 
     @Column(name = "c_username", nullable = false, unique = true)
