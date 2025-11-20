@@ -8,12 +8,12 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(schema = "project_management", name = "t_subject")
-public class Subject {
+public class SubjectEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "c_name")
+    @Column(name = "c_name", nullable = false, unique = true)
     private String name;
 
     @ManyToOne

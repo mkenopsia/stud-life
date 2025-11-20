@@ -1,8 +1,7 @@
 package ru.mkenopsia.projectsservice.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -10,8 +9,11 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(schema = "project_management", name = "t_task")
-public class Task {
+public class TaskEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,15 +33,15 @@ public class Task {
     private TaskStatus taskStatus;
 
     @OneToMany(
-            mappedBy = "parentTask",
+            mappedBy = "parentTaskEntity",
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    private List<Task> requiredTasks;
+    private List<TaskEntity> requiredTaskEntities;
 
     @ManyToOne
     @JoinColumn(name = "c_parent_task_id")
-    private Task parentTask;
+    private TaskEntity parentTaskEntity;
 
     @ManyToOne
     private Project project;
