@@ -1,11 +1,13 @@
 package ru.mkenopsia.apisso.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import ru.mkenopsia.common.dto.StudentInfoDto;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class StudentService {
@@ -23,5 +25,6 @@ public class StudentService {
                 .build();
 
         kafkaTemplate.send(STUDENT_CREATION_TOPIC, infoDto);
+        log.info("Отправлен запрос на создание профиля студента {}, {}, {}", username, email, fio);
     }
 }

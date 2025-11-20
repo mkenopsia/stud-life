@@ -1,4 +1,11 @@
 services:
+#  nginx:
+#    image: nginx:alpine
+#    ports:
+#      - "80:80"
+#    volumes:
+#      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+
   kafka:
     image: confluentinc/confluent-local:7.4.1
     #    networks:

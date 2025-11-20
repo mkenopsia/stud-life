@@ -11,8 +11,9 @@ import java.util.List;
 @Entity
 @Table(schema = "project_management", name = "t_project_member")
 public class ProjectMember {
-    @EmbeddedId
-    private ProjectMemberId id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @OneToOne
     private Student student;

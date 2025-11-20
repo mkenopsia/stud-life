@@ -1,6 +1,7 @@
 package ru.mkenopsia.projectsservice.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.mkenopsia.common.dto.StudentInfoDto;
@@ -8,6 +9,7 @@ import ru.mkenopsia.projectsservice.entity.Student;
 import ru.mkenopsia.projectsservice.mapper.StudentMapper;
 import ru.mkenopsia.projectsservice.repository.StudentRepository;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class StudentService {
@@ -19,5 +21,7 @@ public class StudentService {
     public void save(StudentInfoDto studentInfoDto) {
         Student student = studentMapper.toEntity(studentInfoDto);
         studentRepository.save(student);
+
+        log.info("Создан профиль студента {}", studentInfoDto);
     }
 }

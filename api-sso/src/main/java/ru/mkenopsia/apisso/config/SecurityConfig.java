@@ -22,6 +22,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import ru.mkenopsia.apisso.config.authFilter.PayloadValidator;
 import ru.mkenopsia.apisso.config.authFilter.RestLoginFilter;
 import ru.mkenopsia.apisso.config.authFilter.RestRegistrationFilter;
+import ru.mkenopsia.apisso.config.authFilter.SessionValidationFilter;
 import ru.mkenopsia.apisso.service.AuthService;
 import ru.mkenopsia.apisso.service.UserService;
 
@@ -43,15 +44,17 @@ public class SecurityConfig {
 
         var authFilter = new RestLoginFilter(authManager, mapper, contextRepository);
         var registerFilter = new RestRegistrationFilter(mapper, validator, contextRepository, authService, authManager);
-
+        var validationFilter = new SessionValidationFilter();
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(registerFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(validationFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(request -> request.requestMatchers(
                                 "/api/auth/register",
                                 "/api/auth/login",
-                                "/api/auth/logout"
+                                "/api/auth/logout",
+                                "/api/auth/validate"
                         ).permitAll()
                         .requestMatchers("api/auth/admin")
                         .hasRole("ADMIN")
