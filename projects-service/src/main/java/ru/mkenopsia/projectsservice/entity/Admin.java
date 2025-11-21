@@ -22,5 +22,5 @@ public class Admin {
     private String email;
 
     @OneToMany(mappedBy = "admin")
-    private List<Subject> subjects;
+    private List<SubjectEntity> subjects;
 }

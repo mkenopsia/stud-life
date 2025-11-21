@@ -19,7 +19,7 @@ public class ProjectMember {
     private Student student;
 
     @ManyToOne
-    private Project project;
+    private ProjectEntity project;
 
     @ManyToMany
     @JoinTable(

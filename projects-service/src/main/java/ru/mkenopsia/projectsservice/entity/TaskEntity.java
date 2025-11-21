@@ -44,5 +44,5 @@ public class TaskEntity {
     private TaskEntity parentTaskEntity;
 
     @ManyToOne
-    private Project project;
+    private ProjectEntity project;
 }

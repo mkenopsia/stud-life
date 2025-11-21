@@ -19,5 +19,5 @@ public class ProjectMemberId implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "c_project", referencedColumnName = "id")
-    private Project project;
+    private ProjectEntity project;
 }
